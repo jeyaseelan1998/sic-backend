@@ -12,18 +12,18 @@ app.listen(PORT, () =>
 );
 
 app.post("/calculate", (req, res) => {
-  const { principle = 0, time = 0, interest = 0 } = req.body;
+  const { principal, time, interest} = req.body;
 
   if (
-    principle < 0 ||
+    principal < 0 ||
     time < 0 ||
     interest < 0 ||
-    isNaN(principle) ||
+    isNaN(principal) ||
     isNaN(time) ||
     isNaN(interest)
   ) {
     return res.status(400).send({ error: "All fields are required" });
   }
-  const simpleInterest = (principle * time * interest) / 100;
+  const simpleInterest = (principal * time * interest) / 100;
   res.send({ simpleInterest });
 });
